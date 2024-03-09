@@ -19,7 +19,7 @@ def queue_data(lambda_value, miu_value, desv_value, n_value):
     ]
 
     arrival = arrival_exp(random_exponential, lambda_value)
-    attention = attention_norm(random_normal, miu_value, desv_value)
+    attention = attention_norm(random_normal, miu_value, desv_value, n_value)
     print(arrival)
     print(attention)
 
@@ -31,10 +31,19 @@ def arrival_exp(random_exponential, lambda_value):
     
     return arrival
 
-def attention_norm(random_normal, miu_value, desv_value):
+def attention_norm(random_normal, miu_value, desv_value, n):
     attention = []
     # Calcular la inversa normal
-    attention = norm.ppf(random_normal, loc=miu_value, scale=desv_value)
+    for i in range(n):
+        value = norm.ppf(random_normal[i], loc=miu_value, scale=desv_value)
+
+        # Restricción - Valores mayores a cero
+        if value > 0:
+            attention.append(value)
+        else:
+            attention.append(0)
+
+    
     return attention
 
 
