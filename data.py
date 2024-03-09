@@ -1,4 +1,5 @@
 import pseudorandom
+import sequence
 from scipy.stats import norm, expon
 
 def queue_data(lambda_value, miu_value, desv_value, n_value):
@@ -18,10 +19,9 @@ def queue_data(lambda_value, miu_value, desv_value, n_value):
         0.10345
     ]
 
-    arrival = arrival_exp(random_exponential, lambda_value)
-    attention = attention_norm(random_normal, miu_value, desv_value, n_value)
-    print(arrival)
-    print(attention)
+    queue = arrival_exp(random_exponential, lambda_value)
+    service = attention_norm(random_normal, miu_value, desv_value, n_value)
+    sequence.sequence(queue, service, n_value)
 
 
 def arrival_exp(random_exponential, lambda_value):
