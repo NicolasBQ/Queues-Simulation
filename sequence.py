@@ -13,7 +13,6 @@ def sequence(queue, service, n):
 
     for i in range(n):
         length = i + 1
-        print(length)
         use_queue += queue[i]
         use_service += service[i]
 
@@ -43,25 +42,8 @@ def sequence(queue, service, n):
     # Probabilidad que este vació
     empty = 1 - ro
 
-    initMeasures = {
-        use_queue,
-        use_service,
-        leisure_queue,
-        leisure_service,
-        lambd,
-        miu,
-    }
-    
-    otherMeasures = {
-        L,
-        Lq,
-        W,
-        Wq,
-        ro,
-        empty
-    }
 
-    output.showInitMeasures(initMeasures)
+    output.showInitMeasures(use_queue, leisure_queue, use_service, leisure_service)
     
     # print(f'Uso de Cola: {use_queue}')
     # print(f'Uso de Servicio: {use_service}')
@@ -74,7 +56,8 @@ def sequence(queue, service, n):
     # print(f'Tiempo de espera en la cola: {Wq}')
     # print(f'Capacidad: {ro}')
     # print(f'Probabilidad que este vacío: {empty}')
-    # print(measures)
+
+    
             
 
 
